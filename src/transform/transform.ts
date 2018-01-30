@@ -1,5 +1,6 @@
 import {Options} from "../util";
 import {URLObj} from "../util";
+import {getYouTubeVideoId} from "../util";
 import {deSeparate} from "../separate/separate";
 import identify from "./identify";
 import {separate} from "../separate/separate";
@@ -27,7 +28,6 @@ export default function(str,options:Options):string|Array<URLObj>{
 		}
 		return listed;
 	}
-
 	// transform objects to HTML tags
 	identified = identified.map((fragment)=>{
 		if(typeof fragment === "string") return fragment;
@@ -40,6 +40,13 @@ export default function(str,options:Options):string|Array<URLObj>{
 
 function url2tag (fragment:URLObj,options:Options){
 	var href = fragment.protocol + fragment.encoded;
+
+  let youTubeVideoResult = getYouTubeVideoId(href);
+
+  if(youTubeVideoResult !== false) {
+  	return url2YouTube(youTubeVideoResult);
+	}
+
 	var original = fragment.raw;
 
 	if(typeof options.truncate === "number") {
@@ -63,4 +70,8 @@ function url2tag (fragment:URLObj,options:Options){
 		}
 		else return ` ${attribute.name}="${attribute.value}" `;
 	}).join("")}>${original}</a>`;
+}
+
+function url2YouTube(youtubeId) {
+	return `<div class="video-embed"><iframe frameborder="0" name="youtube video" src="https://www.youtube.com/embed/${youtubeId}" allow="encrypted-media" allowfullscreen></iframe></div>`
 }

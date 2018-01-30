@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = require("../util");
 var separate_1 = require("../separate/separate");
 var identify_1 = require("./identify");
 var separate_2 = require("../separate/separate");
@@ -30,12 +31,21 @@ function default_1(str, options) {
             return fragment;
         return url2tag(fragment, options);
     });
+    // console.log("==========");
+    // console.log(identified);
+    //
+    // console.log(deSeparate(identified));
     // join and return
     return separate_1.deSeparate(identified);
 }
 exports.default = default_1;
 function url2tag(fragment, options) {
     var href = fragment.protocol + fragment.encoded;
+    var youTubeVideoResult = util_1.getYouTubeVideoId(href);
+    console.log(youTubeVideoResult);
+    if (youTubeVideoResult !== false) {
+        return url2YouTube(youTubeVideoResult);
+    }
     var original = fragment.raw;
     if (typeof options.truncate === "number") {
         if (original.length > options.truncate)
@@ -59,4 +69,7 @@ function url2tag(fragment, options) {
         else
             return " " + attribute.name + "=\"" + attribute.value + "\" ";
     }).join("") + ">" + original + "</a>";
+}
+function url2YouTube(youtubeId) {
+    return "<div class=\"video-embed\"><iframe frameborder=\"0\" name=\"youtube video\" src=\"https://www.youtube.com/embed/" + youtubeId + "\" allow=\"encrypted-media\" allowfullscreen></iframe></div>";
 }

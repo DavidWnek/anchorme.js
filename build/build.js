@@ -44,7 +44,7 @@ function build(){
 	});
 }
 
-execute("jest")
+execute("")
 .then((out)=>{
 	console.log("Test passed successfully");
 	return execute("tsc");

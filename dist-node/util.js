@@ -52,3 +52,12 @@ function isPort(value) {
         return true;
 }
 exports.isPort = isPort;
+function getYouTubeVideoId(url) {
+    var regexMatch = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i;
+    var match = url.match(regexMatch);
+    if (match && match.length === 2) {
+        return match[1];
+    }
+    return false;
+}
+exports.getYouTubeVideoId = getYouTubeVideoId;

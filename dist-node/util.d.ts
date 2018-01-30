@@ -35,3 +35,4 @@ export declare function defaultOptions(options: Options | undefined): Options;
  *
 **/
 export declare function isPort(value: string): boolean;
+export declare function getYouTubeVideoId(url: any): any;

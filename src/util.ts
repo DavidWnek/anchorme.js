@@ -67,3 +67,12 @@ export function isPort(value:string):boolean{
 	if((Number(value))>65535) return false;
 	else return true;
 }
+
+export function getYouTubeVideoId(url) {
+  let regexMatch = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i;
+  let match = url.match(regexMatch);
+  if(match && match.length === 2) {
+    return match[1];
+  }
+  return false;
+}
