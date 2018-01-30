@@ -413,10 +413,6 @@ function default_1(str, options) {
             { return fragment; }
         return url2tag(fragment, options);
     });
-    // console.log("==========");
-    // console.log(identified);
-    //
-    // console.log(deSeparate(identified));
     // join and return
     return separate_1.deSeparate(identified);
 }
@@ -424,7 +420,6 @@ exports.default = default_1;
 function url2tag(fragment, options) {
     var href = fragment.protocol + fragment.encoded;
     var youTubeVideoResult = util.getYouTubeVideoId(href);
-    console.log(youTubeVideoResult);
     if (youTubeVideoResult !== false) {
         return url2YouTube(youTubeVideoResult);
     }
