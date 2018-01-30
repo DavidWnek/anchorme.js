@@ -20,8 +20,8 @@
     "anchor",
     "tags"
   ],
-  "author": [
-    "Alex Corvi <alex@arrayy.com>",
+  "author": "Alex Corvi <alex@arrayy.com>",
+  "contributors": [
     "David Wnek <davidwnek@gmail.com>"
   ],
   "license": "MIT",
